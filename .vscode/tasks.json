@@ -1,0 +1,201 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "1-Install dependencies",
+      "type": "shell",
+      "command": "./tools/install-dependencies.sh",
+      "problemMatcher": []
+    },
+    {
+      "label": "2-Integrate IoD Sim with ns3",
+      "type": "shell",
+      "command": "./tools/prepare-ns3.sh",
+      "problemMatcher": []
+    },
+    {
+      "label": "3-Configure IoD Sim",
+      "type": "shell",
+      "command": "./tools/configure-iodsim.sh",
+      "group": "build",
+      "problemMatcher": []
+    },
+    {
+      "label": "4-Build IoD Sim",
+      "type": "shell",
+      "command": "./ns3 build -j$(grep -c ^processor /proc/cpuinfo)",
+      "options": {
+        "cwd": "${workspaceFolder}/ns3/"
+      },
+      "group": "build",
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "Cleanup results directory",
+      "type": "shell",
+      "command": "rm -rf ./results/*",
+      "group": "none",
+      "problemMatcher": []
+    },
+    {
+      "label": "Cleanup Build",
+      "type": "shell",
+      "command": "./ns3 clean",
+      "options": {
+        "cwd": "${workspaceFolder}/ns3"
+      },
+      "group": "none",
+      "problemMatcher": []
+    },
+    {
+      "label": "Run IoD Sim",
+      "type": "shell",
+      "command": "source ${workspaceFolder}/.venv/bin/activate && ./ns3 run \"iodsim --config=${input:scenarioConfigurationFilepath} \"",
+      "options": {
+        "cwd": "${workspaceFolder}/ns3"
+      },
+      "group": "test"
+    },
+    {
+      "label": "Generate 2D REM",
+      "type": "shell",
+      "command": "source ${workspaceFolder}/.venv/bin/activate && ./ns3 run \"iodsim --config=${input:scenarioConfigurationFilepath} --radioMap=1\"",
+      "options": {
+        "cwd": "${workspaceFolder}/ns3"
+      },
+      "group": "test"
+    },
+    {
+      "label": "Generate 3D REM",
+      "type": "shell",
+      "command": "source ${workspaceFolder}/.venv/bin/activate && ./ns3 run \"iodsim --config=${input:scenarioConfigurationFilepath} --radioMap=2\"",
+      "options": {
+        "cwd": "${workspaceFolder}/ns3"
+      },
+      "group": "test"
+    },
+    {
+      "label": "Test all IoD Sim scenarios",
+      "type": "shell",
+      "command": "CTEST_PARALLEL_LEVEL=$(nproc) make test",
+      "options": {
+        "cwd": "${workspaceFolder}/build",
+        "env": {
+          "CTEST_OUTPUT_ON_FAILURE": "1"
+        }
+      },
+      "problemMatcher": [],
+      "dependsOn": [
+        "4-Build IoD Sim",
+        "Clear all tests"
+      ]
+    },
+    {
+      "label": "Clear all tests",
+      "type": "shell",
+      "command": "rm -rf results",
+      "options": {
+        "cwd": "${workspaceFolder}/build"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Profile IoD Sim",
+      "type": "shell",
+      "command": "valgrind --tool=callgrind ${workspaceFolder}/ns3/build/src/drone/examples/ns3.33-iod-sim-debug --config=${input:scenarioConfigurationFilepath}",
+      "options": {
+        "cwd": "${workspaceFolder}/ns3",
+        "env": {
+          "LD_LIBRARY_PATH": "${workspaceFolder}/ns3/build/lib/"
+        }
+      },
+      "group": "test"
+    },
+    {
+      "label": "docs",
+      "type": "shell",
+      "command": "make html",
+      "options": {
+        "cwd": "${workspaceFolder}/docs"
+      },
+      "windows": {
+        "command": "./make.bat html",
+        "options": {
+          "cwd": "${workspaceFolder}/docs"
+        }
+      },
+      "group": "build"
+    },
+    {
+      "label": "docs (venv)",
+      "type": "shell",
+      "command": "make html",
+      "options": {
+        "cwd": "${workspaceFolder}/docs",
+        "env": {
+          "SPHINXBUILD": "${workspaceFolder}/venv/Scripts/sphinx-build"
+        }
+      },
+      "windows": {
+        "command": "./make.bat html",
+        "options": {
+          "cwd": "${workspaceFolder}/docs",
+          "env": {
+            "SPHINXBUILD": "${workspaceFolder}\\venv\\Scripts\\sphinx-build.exe"
+          }
+        }
+      },
+      "group": "build",
+      "dependsOn": [
+        "docs (venv) - clean"
+      ]
+    },
+    {
+      "label": "docs (venv) - clean",
+      "type": "shell",
+      "command": "make clean",
+      "options": {
+        "cwd": "${workspaceFolder}/docs",
+        "env": {
+          "SPHINXBUILD": "${workspaceFolder}/venv/Scripts/sphinx-build"
+        }
+      },
+      "windows": {
+        "command": "./make.bat clean",
+        "options": {
+          "cwd": "${workspaceFolder}/docs",
+          "env": {
+            "SPHINXBUILD": "${workspaceFolder}\\venv\\Scripts\\sphinx-build.exe"
+          }
+        }
+      }
+    },
+    {
+      "label": "docs (venv) - open",
+      "type": "shell",
+      "command": "xdg-open ./_build/html/index.html",
+      "options": {
+        "cwd": "${workspaceFolder}/docs"
+      },
+      "windows": {
+        "command": ".\\_build\\html\\index.html",
+        "options": {
+          "cwd": "${workspaceFolder}\\docs"
+        }
+      },
+      "dependsOn": [
+        "docs (venv)"
+      ]
+    }
+  ],
+  "inputs": [
+    {
+      "id": "scenarioConfigurationFilepath",
+      "type": "promptString",
+      "description": "Path to configuration file for this scenario",
+      "default": "${workspaceFolder}/scenario/simple_wifi.json"
+    }
+  ]
+}

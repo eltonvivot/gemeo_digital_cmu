@@ -1,0 +1,23 @@
+# Ignore build artifacts
+build/
+
+# Ignore upstream repository
+ns3/build
+ns3/src/iodsim
+
+# Ignore user scenario results, but keep directory in place
+results/*
+!results/.placeholder
+
+# Ignore Python cache
+__pycache__
+
+# Ignore Python virtual environment
+.venv/
+
+# Ignore background scenario nohup outputs
+nohup.out
+
+# Ignore gui examples
+iod_gui/examples
+cmu

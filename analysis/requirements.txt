@@ -1,0 +1,5 @@
+jstyleson
+numpy
+matplotlib
+ipykernel
+plyfile

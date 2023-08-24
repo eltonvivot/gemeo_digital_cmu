@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compile using Containers &mdash; IoD_Sim 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Compile natively" href="native.html" />
+    <link rel="prev" title="Installation Walkthrough" href="../install.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> IoD_Sim
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../general_information.html">General Information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installation Walkthrough</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Compile using Containers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-the-image">Build the image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#container-usage">Container usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="native.html">Compile natively</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/usage.html">Software Usage Guides</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">IoD_Sim</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Compile using Containers</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/compile/container.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="compile-using-containers">
+<h1>Compile using Containers<a class="headerlink" href="#compile-using-containers" title="Permalink to this heading"></a></h1>
+<p>This page will guide you through building the source code using a container.
+Containers are easy to share and can be considered as a reliable reference to
+work on.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This guide refers on using <a class="reference external" href="https://docs.docker.com/">Docker</a> as the
+installed container platform. The following instructions are applicable to
+other platforms, as long as they are <a class="reference external" href="https://www.opencontainers.org/">OCI</a> compatible, such as <a class="reference external" href="https://podman.io/">podman</a> or <a class="reference external" href="https://github.com/cri-o/cri-o">cri-o</a> for
+Kubernetes.</p>
+</div>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h2>
+<p>This software does not request any further prerequisites than the ones
+suggested by your container platform of reference. Please refer to their
+documentation for such information.</p>
+</section>
+<section id="build-the-image">
+<h2>Build the image<a class="headerlink" href="#build-the-image" title="Permalink to this heading"></a></h2>
+<p>Be sure that Docker service is running. By placing yourself in <code class="docutils literal notranslate"><span class="pre">container/</span></code>
+directory, you can start building:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$  ./Make-Tarball.sh   # if you are using Bash
+&gt;  ./Make-Tarball.ps1  # if you are using PowerShell
+
+$  docker build -t iodsim:latest .
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Make-Tarball</span></code> is a script that compresses local source code in order to be
+deployed and compiled on the container. This source code will be compiled
+against the most recent ns-3 revision by cloning it from git repository. This
+process is done automatically.</p>
+</section>
+<section id="container-usage">
+<h2>Container usage<a class="headerlink" href="#container-usage" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">waf</span></code> has been set as the container entrypoint. This means that a <code class="docutils literal notranslate"><span class="pre">docker</span>
+<span class="pre">run</span> <span class="pre">iodsim</span></code> will automatically call <code class="docutils literal notranslate"><span class="pre">waf</span></code>, not the shell. For this reason,
+you are subject to <em>waf</em> command line interface, on which you can call your
+scenario with <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">iodsim:devel</span> <span class="pre">--run</span> <span class="pre">my-test-scenario</span></code> or invoke
+<em>waf</em> shell using <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">run</span> <span class="pre">iodsim</span> <span class="pre">shell</span></code>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../install.html" class="btn btn-neutral float-left" title="Installation Walkthrough" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="native.html" class="btn btn-neutral float-right" title="Compile natively" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, The IoD_Sim Authors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

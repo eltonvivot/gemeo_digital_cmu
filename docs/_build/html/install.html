@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation Walkthrough &mdash; IoD_Sim 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Compile using Containers" href="compile/container.html" />
+    <link rel="prev" title="General Information" href="general_information.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> IoD_Sim
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="general_information.html">General Information</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation Walkthrough</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#before-you-begin">Before you begin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#wsl2">WSL2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vscode-integration">VSCode Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker-integration">Docker Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#required-software-packages">Required Software Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clone-iod-sim">Clone IoD Sim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-and-compilation">Configuration and Compilation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#run-a-scenario-to-verify-the-compilation">Run a Scenario to Verify the Compilation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#conclusions">Conclusions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="compile/container.html">Compile using Containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compile/native.html">Compile natively</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage/usage.html">Software Usage Guides</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">IoD_Sim</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Installation Walkthrough</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/install.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation-walkthrough">
+<h1>Installation Walkthrough<a class="headerlink" href="#installation-walkthrough" title="Permalink to this heading"></a></h1>
+<section id="before-you-begin">
+<h2>Before you begin<a class="headerlink" href="#before-you-begin" title="Permalink to this heading"></a></h2>
+<p>IoD_Sim is only compatible with <strong>Linux</strong>-based operating systems. To this end, ensure you have a Linux-based
+working environment. This guide assumes you are using Ubuntu. Dependencies, software packages, and the overall
+install methodology may differ between Linux distributions. If you already have a working Linux environment available,
+you can skip this section.</p>
+<section id="wsl2">
+<h3>WSL2<a class="headerlink" href="#wsl2" title="Permalink to this heading"></a></h3>
+<p>In case you are new to the Linux world and you are on Windows, it is highly recommended that you install Windows
+Subsystem for Linux 2 (WSL2). WSL2 can be downloaded from <a class="reference external" href="https://docs.microsoft.com/en-us/windows/wsl/about">here</a>.</p>
+<p>Useful recommended software to interact with WSL2 is Windows Terminal, which can be downloaded from the
+<a class="reference external" href="https://www.microsoft.com/en-us/p/windows-terminal/9n0dx20hk701">Microsoft Store</a>.</p>
+</section>
+<section id="vscode-integration">
+<h3>VSCode Integration<a class="headerlink" href="#vscode-integration" title="Permalink to this heading"></a></h3>
+<p>Finally, this guide assumes that you will work on IoD Sim using Visual Studio Code, available
+<a class="reference external" href="https://code.visualstudio.com/">here</a>. IoD Sim integrates with VSCode to ease some repetitive and mechanical tasks,
+such as source code compilation and scenario execution.</p>
+</section>
+<section id="docker-integration">
+<h3>Docker Integration<a class="headerlink" href="#docker-integration" title="Permalink to this heading"></a></h3>
+<p>IoD Sim also comes with Docker integration for development purposes. If you already know Docker, you can easily build
+a safe working environment by following this mini-guide:</p>
+<ol class="arabic simple">
+<li><p>Install Docker and VSCode.</p></li>
+<li><p>Clone IoD Sim source code with git on your Linux environment.</p></li>
+<li><p>Open the IoD Sim directory with VSCode.</p></li>
+<li><p>Install VSCode <code class="docutils literal notranslate"><span class="pre">Remote</span> <span class="pre">-</span> <span class="pre">Containers</span></code> extension.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">Remote-Containers:</span> <span class="pre">Rebuild</span> <span class="pre">And</span> <span class="pre">Reopen</span> <span class="pre">In</span> <span class="pre">Container</span></code> from VSCode Command Palette.</p></li>
+</ol>
+<p>After this set of operations, you can skip this guide to the configuration and build of IoD Sim.</p>
+</section>
+</section>
+<section id="required-software-packages">
+<h2>Required Software Packages<a class="headerlink" href="#required-software-packages" title="Permalink to this heading"></a></h2>
+<p>The following packages must be installed in order to compile and run IoD Sim. If you see the bash command prefixed with
+a <code class="docutils literal notranslate"><span class="pre">$</span></code>, it means that the command can be run as a user. In case of a <code class="docutils literal notranslate"><span class="pre">#</span></code>, it means that you have to be the <code class="docutils literal notranslate"><span class="pre">root</span></code> user.
+You can prefix the command with <code class="docutils literal notranslate"><span class="pre">sudo</span></code> to request root privileges temporarily. Furthermore, if a command line ends with
+a <code class="docutils literal notranslate"><span class="pre">\</span></code>, please continue the command by following the next line.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># apt update</span>
+<span class="c1"># apt install --no-install-recommends -y \</span>
+    <span class="n">git</span> <span class="n">gcc</span> <span class="n">g</span><span class="o">++</span> <span class="n">gdb</span> <span class="n">patch</span> <span class="n">python3</span> <span class="n">python</span><span class="o">-</span><span class="ow">is</span><span class="o">-</span><span class="n">python3</span> <span class="n">pkg</span><span class="o">-</span><span class="n">config</span> <span class="n">rapidjson</span><span class="o">-</span><span class="n">dev</span> <span class="n">libgsl</span><span class="o">-</span><span class="n">dev</span> <span class="n">libxml2</span><span class="o">-</span><span class="n">dev</span>
+</pre></div>
+</div>
+</section>
+<section id="clone-iod-sim">
+<h2>Clone IoD Sim<a class="headerlink" href="#clone-iod-sim" title="Permalink to this heading"></a></h2>
+<p>The cloning process is a specific process of <code class="docutils literal notranslate"><span class="pre">git</span></code> software that allows distribute code sharing among engineers.
+Once you have the <em>git clone URL</em> at hand, you can clone the remote repository on your Linux environment with the
+following command. Then, you can start VSCode to jump to the next step in the guide:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone &lt;Paste_IoD_Sim_git_clone_URL_here&gt;
+$ code IoD_Sim/
+</pre></div>
+</div>
+</section>
+<section id="configuration-and-compilation">
+<h2>Configuration and Compilation<a class="headerlink" href="#configuration-and-compilation" title="Permalink to this heading"></a></h2>
+<p>Once VSCode is started and the IoD Sim source code is visible in the project explorer column of its user interface, is
+it possible that VSCode suggests some extensions to install. Please do so in order to allow VSCode integration with
+IoD Sim.</p>
+<p>When extension install has finished, you can proceed with configuration and compilation of IoD Sim.
+In order to configure IoD Sim project, from VSCode Command Palette select <code class="docutils literal notranslate"><span class="pre">Task:</span> <span class="pre">Run</span> <span class="pre">Task</span></code> and then
+<code class="docutils literal notranslate"><span class="pre">Integrate</span> <span class="pre">IoD</span> <span class="pre">Sim</span> <span class="pre">with</span> <span class="pre">ns3</span></code>.</p>
+<p>After the integration completes, run the task <code class="docutils literal notranslate"><span class="pre">configure</span></code>. This task emits an colored output. You can check yellow and
+red text to evaluate source code configuration. Most yellow and red messages can be ignored, as they are not relevant
+for IoD Sim. Please ensure that the output is green for the following checks:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Checking</span> <span class="pre">for</span> <span class="pre">'gcc'</span> <span class="pre">(C</span> <span class="pre">compiler)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Checking</span> <span class="pre">for</span> <span class="pre">'g++'</span> <span class="pre">(C++</span> <span class="pre">compiler)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Checking</span> <span class="pre">for</span> <span class="pre">program</span> <span class="pre">'pkg-config'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Checking</span> <span class="pre">for</span> <span class="pre">'libxml-2.0</span> <span class="pre">&gt;=</span> <span class="pre">2.7'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Checking</span> <span class="pre">for</span> <span class="pre">'gsl'</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Examples</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GNU</span> <span class="pre">Scientific</span> <span class="pre">Library</span> <span class="pre">(GSL)</span></code></p></li>
+</ul>
+<p>If the <code class="docutils literal notranslate"><span class="pre">configure</span></code> task was executed successfully, it is now time to run <code class="docutils literal notranslate"><span class="pre">build</span></code> task.</p>
+</section>
+<section id="run-a-scenario-to-verify-the-compilation">
+<h2>Run a Scenario to Verify the Compilation<a class="headerlink" href="#run-a-scenario-to-verify-the-compilation" title="Permalink to this heading"></a></h2>
+<p>To check if the compilation went without problems, you can execute the task <code class="docutils literal notranslate"><span class="pre">run</span> <span class="pre">IoD</span> <span class="pre">Sim</span></code>. Simulation output files will
+be stored in the <code class="docutils literal notranslate"><span class="pre">results/</span></code> directory.</p>
+</section>
+<section id="conclusions">
+<h2>Conclusions<a class="headerlink" href="#conclusions" title="Permalink to this heading"></a></h2>
+<p>You now have a working environment. Enjoy IoD Sim!</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="general_information.html" class="btn btn-neutral float-left" title="General Information" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="compile/container.html" class="btn btn-neutral float-right" title="Compile using Containers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, The IoD_Sim Authors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

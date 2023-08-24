@@ -1,0 +1,52 @@
+diff --git a/src/mobility/helper/mobility-helper.h b/src/mobility/helper/mobility-helper.h
+index d23f62213..3bfbe8158 100644
+--- a/src/mobility/helper/mobility-helper.h
++++ b/src/mobility/helper/mobility-helper.h
+@@ -43,6 +43,8 @@ class MobilityModel;
+ class MobilityHelper
+ {
+   public:
++    friend class MobilityFactoryHelper;
++
+     /**
+      * Construct a Mobility Helper which is used to make life easier when working
+      * with mobility models.
+diff --git a/src/mobility/model/mobility-model.h b/src/mobility/model/mobility-model.h
+index ea39cf16a..645a18c08 100644
+--- a/src/mobility/model/mobility-model.h
++++ b/src/mobility/model/mobility-model.h
+@@ -39,6 +39,8 @@ namespace ns3
+ class MobilityModel : public Object
+ {
+   public:
++    friend class MobilityFactoryHelper;
++
+     /**
+      * Register this type with the TypeId system.
+      * \return the object TypeId
+diff --git a/src/wifi/helper/wifi-helper.h b/src/wifi/helper/wifi-helper.h
+index 5ad4a69d5..00b7078b2 100644
+--- a/src/wifi/helper/wifi-helper.h
++++ b/src/wifi/helper/wifi-helper.h
+@@ -324,6 +324,8 @@ class WifiPhyHelper : public PcapHelperForDevice, public AsciiTraceHelperForDevi
+ class WifiHelper
+ {
+   public:
++    friend class WifiMacFactoryHelper;
++
+     virtual ~WifiHelper();
+ 
+     /**
+diff --git a/src/wifi/helper/yans-wifi-helper.h b/src/wifi/helper/yans-wifi-helper.h
+index 7dada22e1..34a855ae7 100644
+--- a/src/wifi/helper/yans-wifi-helper.h
++++ b/src/wifi/helper/yans-wifi-helper.h
+@@ -38,6 +38,8 @@ namespace ns3
+ class YansWifiChannelHelper
+ {
+   public:
++    friend class WifiPhyFactoryHelper;
++
+     /**
+      * Create a channel helper without any parameter set. The user must set
+      * them all to be able to call Create later.

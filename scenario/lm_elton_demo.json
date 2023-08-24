@@ -1,0 +1,266 @@
+{
+  "name": "lm_elton_demo",
+  "resultsPath": "../results/",
+  "logOnFile": true,
+  "filteredLog": true,
+  "courseChangeInterval": 0.1,
+  "duration": 20,
+  "staticNs3Config": [],
+  "world": {
+    "size": {
+      "X": "100",
+      "Y": "100",
+      "Z": "20"
+    },
+    "buildings": []
+  },
+  "phyLayer": [
+    {
+      "type": "lte",
+      "attributes": [],
+      "channel": {
+        "propagationLossModel": {
+          "name": "ns3::HybridBuildingsPropagationLossModel",
+          "attributes": [
+            {
+              "name": "ShadowSigmaExtWalls",
+              "value": 0.0
+            },
+            {
+              "name": "ShadowSigmaOutdoor",
+              "value": 1.0
+            },
+            {
+              "name": "ShadowSigmaIndoor",
+              "value": 1.5
+            }
+          ]
+        },
+        "spectrumModel": {
+          "name": "ns3::MultiModelSpectrumChannel",
+          "attributes": []
+        }
+      }
+    }
+  ],
+  "macLayer": [
+    {
+      "type": "lte"
+    }
+  ],
+  "networkLayer": [
+    {
+      "type": "ipv4",
+      "address": "10.1.0.0",
+      "mask": "255.255.255.0",
+      "gateway": "10.1.0.1"
+    }
+  ],
+  "drones": [
+    {
+      "netDevices": [
+        {
+          "type": "lte",
+          "networkLayer": 0,
+          "role": "UE",
+          "bearers": [
+            {
+              "type": "GBR_CONV_VIDEO",
+              "bitrate": {
+                "guaranteed": {
+                  "downlink": 20e6,
+                  "uplink": 5e6
+                },
+                "maximum": {
+                  "downlink": 20e6,
+                  "uplink": 5e6
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "mobilityModel": {
+        "name": "ns3::ConstantAccelerationMobilityModel",
+        "attributes": [
+          {
+            "name": "Position",
+            "value": [
+              20.0,
+              15.0,
+              10.0
+            ]
+          }
+        ]
+      },
+      "applications": [
+        {
+          "name": "ns3::DroneClientApplication",
+          "attributes": [
+            {
+              "name": "StartTime",
+              "value": 1.0
+            },
+            {
+              "name": "StopTime",
+              "value": 1000.0
+            },
+            {
+              "name": "DestinationIpv4Address",
+              "value": "200.0.0.1"
+            }
+          ]
+        }
+      ],
+      "mechanics": {
+        "name": "ns3::Drone",
+        "attributes": [
+          {
+            "name": "Mass",
+            "value": 0.750
+          },
+          {
+            "name": "RotorDiskArea",
+            "value": 0.18
+          },
+          {
+            "name": "DragCoefficient",
+            "value": 0.08
+          }
+        ]
+      },
+      "battery": {
+        "name": "ns3::LiIonEnergySource",
+        "attributes": [
+          {
+            "name": "LiIonEnergySourceInitialEnergyJ",
+            "value": 3000.0
+          },
+          {
+            "name": "LiIonEnergyLowBatteryThreshold",
+            "value": 0.2
+          }
+        ]
+      },
+      "peripherals": [
+        {
+          "name": "ns3::DronePeripheral",
+          "attributes": [
+            {
+              "name": "PowerConsumption",
+              "value": [
+                0,
+                1.0,
+                3.3
+              ]
+            }
+          ]
+        },
+        {
+          "name": "ns3::StoragePeripheral",
+          "attributes": [
+            {
+              "name": "PowerConsumption",
+              "value": [
+                0,
+                1.0,
+                3.3
+              ]
+            },
+            {
+              "name": "Capacity",
+              "value": 80000000
+            }
+          ]
+        },
+        {
+          "name": "ns3::InputPeripheral",
+          "attributes": [
+            {
+              "name": "PowerConsumption",
+              "value": [
+                0,
+                1.0,
+                3.3
+              ]
+            },
+            {
+              "name": "DataRate",
+              "value": 1e+6
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "ZSPs": [
+    {
+      "netDevices": [
+        {
+          "type": "lte",
+          "role": "eNB",
+          "networkLayer": 0,
+          "bearers": [
+            {
+              "type": "GBR_CONV_VIDEO",
+              "bitrate": {
+                "guaranteed": {
+                  "downlink": 20e6,
+                  "uplink": 5e6
+                },
+                "maximum": {
+                  "downlink": 20e6,
+                  "uplink": 5e6
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "mobilityModel": {
+        "name": "ns3::ConstantPositionMobilityModel",
+        "attributes": [
+          {
+            "name": "Position",
+            "value": [
+              10.0,
+              10.0,
+              1.0
+            ]
+          }
+        ]
+      },
+      "applications": []
+    }
+  ],
+  "remotes": [
+    {
+      "networkLayer": 0,
+      "applications": [
+        {
+          "name": "ns3::DroneServerApplication",
+          "attributes": []
+        }
+      ]
+    }
+  ],
+  "analytics": [
+    {
+      "type": "lteRadioEnvironmentMap",
+      "ChannelPath": "/ChannelList/2"
+    }
+  ],
+  "logComponents": [
+    "DroneServerApplication",
+    "DroneClientApplication",
+    "Drone",
+    "Scenario",
+    "LteHelper",
+    "NoBackhaulEpcHelper",
+    "LteEnbNetDevice",
+    "LteUeNetDevice"
+  ],
+  "timeSeriesMetrics": {
+    "reportInterval": 0.5
+  }
+}
